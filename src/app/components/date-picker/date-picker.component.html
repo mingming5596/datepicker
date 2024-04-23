@@ -1,0 +1,33 @@
+<div class="dateSelector">
+  <div class="selectedDate" #inp (click)="showDatePicker();">{{value}}</div>
+  <div class="datePicker" *ngIf="isShowPicker" (appClickOutside)="hideDatePicker();" (click)="stopPropagation($event)">
+    <div class="datePicker-head">
+      <button
+        class="btn-datePicker-arrow prev"
+        [class.is-disabled]="isDisableMonth(-1)"
+        (click)="handleMonth(-1)"><</button>
+      <span class="datePicker-title">{{ month }}月 {{year}}</span>
+      <button
+        class="btn-datePicker-arrow next"
+        [class.is-disabled]="isDisableMonth(1)"
+        (click)="handleMonth(1)">></button>
+    </div>
+    <div class="datePicker-box">
+      <span class="datePicker-cell cell--week">Sun</span>
+      <span class="datePicker-cell cell--week">Mon</span>
+      <span class="datePicker-cell cell--week">Tue</span>
+      <span class="datePicker-cell cell--week">Wed</span>
+      <span class="datePicker-cell cell--week">Thu</span>
+      <span class="datePicker-cell cell--week">Fri</span>
+      <span class="datePicker-cell cell--week">Sat</span>
+      <span
+        *ngFor="let pickerDay of pickerDays"
+        class="datePicker-cell cell--day"
+        [class.is-empty]="pickerDay.date === ''"
+        [class.is-disabled]="pickerDay.disable"
+        [class.is-select]="isActive(pickerDay.date)"
+        (click)="changeDay(pickerDay);stopPropagation($event)">{{pickerDay.date}}</span>
+    </div>
+  </div>
+
+</div>

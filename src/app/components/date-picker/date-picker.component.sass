@@ -1,0 +1,119 @@
+// -------------------------------------
+//   Mixins
+// -------------------------------------
+
+=fs($fz: null, $c: null, $lh: null, $fw: null, $fm: null)
+  font-size: $fz
+  color: $c
+  line-height: $lh
+  font-weight: $fw
+  font-family: $fm
+  @content
+
+=imgBg($w: null, $h: null, $img-url: null)
+  width: $w
+  height: $h
+  background-image: url('#{$img-url}')
+
+=size($w: null, $h: null)
+  width: $w
+  height: $h
+  @content
+
+=pos($p: null, $t: null, $r: null, $b: null, $l: null)
+  position: $p
+  top: $t
+  right: $r
+  bottom: $b
+  left: $l
+  @content
+
+
+
+.dateSelector
+  +pos($p: relative)
+  display: inline-block
+
+.selectedDate
+  +pos($p: relative)
+  +size($w: 118px, $h: 30px)
+  +fs($fz: 14px, $lh: 30px)
+  border-radius: 3px
+  border: 1px solid #BDBDBD
+  display: inline-block
+  padding-left: 10px
+  margin-right: 8px
+  box-sizing: border-box
+  &::after
+    +imgBg($w: 16px, $h: 16px, $img-url: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAsQAAALEBxi1JjQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHYSURBVEiJ3dY9a1RBFAbgZ2OC+BGjBoyYVgvRGDAWBruAqGkECz9AUGy0jVb+Af0PBgIBwU7EwkIkhZBaJK424jYGNWbVEFeJBtdizrKb69WN66bxheHOnHnnPffMmTn3ko8RvMbQb+YbcSi4I3mTnZnxeuzCcfTH82MTB8cauK/wBktZ0jaMo4LqP7YKbmErFLAF09iPRTzFTuzGC8w2iaAfe/ESbzGIbszgCNwMz4+wPRZdD9vlJuKCU4010IupsN3owNkYXMSHIFUyzz8hyy3jQvTPwLJft6EHl7BxFQ424UqsacQslgvS2y/izirE/gbn0F1zsGao3YN3ON9m7dvoI0VQarO40Kx2rIHwCuQ5GMInKbJ57Av7uPptnQjbnuBUY81wVixbi0gnqiTd8LJ6LXov1RpScYMv0nFciFbOi+L/y0FbkZeDDVIt6ZH2dBLfcRBHg/MQT9AV3F4pB5P4mhXM5mDUyvp+OOyPG2xTYRvOcEcbdEqoFvBNOil9MdGFUxHBPO7hBwbUj+E0iliH01L9X8DdiBbmQkMxvA/kbFerGAzNGbgWgyIOtEn8eWiOFaRE38eJIMzhc4vim7Ej+g9wsjbRiat4Jv0RtPrBXwqNsdD0E4c8m0FLu9ZqAAAAAElFTkSuQmCC')
+    +pos($p: absolute, $t: 6px, $r: 4px)
+    background-size: cover
+    content: ''
+    cursor: pointer
+
+.datePicker-title
+  +size($w: calc(100% / 7 * 5), $h: 30px)
+  display: inline-block
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+.datePicker
+  +pos($p: absolute, $t: 34px, $l: 0px)
+  +size($w: 244px, $h: auto)
+  background-color: #fff
+  border-radius: 2px
+  border: 1px solid  #BDBDBD
+  box-sizing: border-box
+  z-index: 1
+
+.datePicker-head
+  +fs($fz: 14px, $c: #616161, $fw: bolder, $lh: 30px)
+  +size($h: 30px)
+  background-color: #e0e0e0
+  cursor: default
+  text-align: center
+
+.datePicker-cell
+  +fs($fz: 13px, $lh: 30px)
+  +size($w: calc(100% / 7), $h: 30px)
+  display: inline-block
+  text-align: center
+  vertical-align: middle
+  cursor: pointer
+  &:hover
+    +fs($c: #2bd)
+  &.is-select
+    +fs($c: #FFF)
+    background-color: #2bd
+  &.is-disabled
+    color: #b3adad
+    cursor: not-allowed
+  &.is-empty
+    cursor: default
+  &:nth-of-type(-n+7)
+    +fs($fw: bolder)
+    cursor: default
+    &:hover
+      +fs($c: inherit)
+      background-color: inherit
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+.btn-datePicker-arrow
+  +size($w: calc(100% / 7), $h: 30px)
+  +fs($fz: 14px, $lh: 30px)
+  display: inline-block
+  vertical-align: top
+  &:hover
+    +fs($c: #212121)
+  &.is-disabled
+    color: #b3adad
+    cursor: not-allowed
+
+
+// -------------------------------------
+//   States
+// -------------------------------------
